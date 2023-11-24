@@ -16,10 +16,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<TodoContext>(
         options => options.UseSqlite("name=ConnectionStrings:localDb"));
 
-builder.Services.AddTransient<TodoContext>();
+builder.Services.AddDbContext<TodoContext>();
 
-builder.Services.AddTransient<ITaskItemRepository, TaskItemRepository>();
-builder.Services.AddSingleton<IToDoService, ToDoService>();
+builder.Services.AddScoped<ITaskItemRepository, TaskItemRepository>();
+builder.Services.AddScoped<IToDoService, ToDoService>();
 
 var app = builder.Build();
 
