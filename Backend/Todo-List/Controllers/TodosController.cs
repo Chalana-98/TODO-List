@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todo_List.Data;
+using Todo_List.Services;
 
 namespace Todo_List.Controllers
 {
@@ -9,18 +10,18 @@ namespace Todo_List.Controllers
     [ApiController]
     public class TodosController : ControllerBase
     {
-        private readonly TodoContext todoContext;
-
-        public TodosController(TodoContext todoContext)
+        private IToDoService _ToDoService;
+        public TodosController(IToDoService toDoService)
         {
-            this.todoContext = todoContext;
+            _ToDoService = toDoService;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllTasks()
         {
-            var Tasks = await todoContext.Tasks.ToListAsync();
-            return Ok(Tasks);
+            var tasks = _ToDoService.GetAllTaskItems();
+
+            return Ok(tasks);
         }
     }
 }
