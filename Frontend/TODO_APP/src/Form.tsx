@@ -18,7 +18,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
   initialTitle = "",
   initialDescription = "",
   initialDueDate = "",
-  initialPriority = "",
+  initialPriority = "High",
 }) => {
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
@@ -38,12 +38,12 @@ const TaskForm: React.FC<TaskFormProps> = ({
     setTitle("");
     setDescription("");
     setDueDate("");
-    setPriority("");
+    setPriority("High");
   };
 
   return (
     <form
-      className="max-w-md mx-auto bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 space-y-4"
+      className="max-w-md mx-auto bg-gradient-to-r from-gray-100 to-blue-50 shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 space-y-4"
       onSubmit={handleSubmit}
     >
       <div className="flex flex-col">
@@ -55,7 +55,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           id="title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-md"
+          className="px-3 py-2 border border-gray-300 rounded-xl"
         />
       </div>
 
@@ -67,7 +67,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-md"
+          className="px-3 py-2 border border-gray-300 rounded-xl"
         />
       </div>
 
@@ -80,7 +80,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           id="dueDate"
           value={dueDate}
           onChange={(e) => setDueDate(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-md"
+          className="px-3 py-2 border border-gray-300 rounded-xl"
         />
       </div>
 
@@ -92,9 +92,10 @@ const TaskForm: React.FC<TaskFormProps> = ({
           id="priority"
           value={priority}
           onChange={(e) => setPriority(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-md"
+          className="px-3 py-2 border border-gray-300 rounded-xl"
         >
           <option value="high">High</option>
+          
           <option value="medium">Medium</option>
           <option value="low">Low</option>
         </select>
@@ -102,7 +103,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
 
       <button
         type="submit"
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className=" bg-sky-900 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-xl"
       >
         Create Task
       </button>
