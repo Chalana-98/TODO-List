@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\github\\C#\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\Todo-List.csproj": {}
+    "E:\\github\\ASP\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\Todo-List.csproj": {}
   },
   "projects": {
-    "E:\\github\\C#\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\Todo-List.csproj": {
+    "E:\\github\\ASP\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\Todo-List.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\github\\C#\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\Todo-List.csproj",
+        "projectUniqueName": "E:\\github\\ASP\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\Todo-List.csproj",
         "projectName": "Todo-List",
-        "projectPath": "E:\\github\\C#\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\Todo-List.csproj",
+        "projectPath": "E:\\github\\ASP\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\Todo-List.csproj",
         "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "E:\\github\\C#\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\obj\\",
+        "outputPath": "E:\\github\\ASP\\Expernetic Task\\TODO-List\\Backend\\Todo-List\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",

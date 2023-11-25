@@ -12,27 +12,24 @@ namespace Todo_List.Services
             _TaskItemRepository = taskItemRepository;
         }
 
-        public List<TaskItem> GetAllTaskItems()
+        public Task<List<TaskItem>> GetAllTaskItems()
         {
             return _TaskItemRepository.GetAll();
         }
 
-        /* getAll ()
-         * filter by user
-         * order by priority
-         */
+        public Task<TaskItem> UpdateTaskItem(TaskItem item)
+        {
+            throw new NotImplementedException();
+        }
 
+        public async Task CreateTaskItem(TaskItem item)
+        {
+            await _TaskItemRepository.Create(item);
+        }
 
-        /* update(ToDo item) // arg : new item
-         * update title, description, status, priority
-         */
-
-        /* delete(ToDo item) // arg : item to de deleted 
-         * check the created user if yes -> delete else -> not authoried
-         */
-
-        /* create(ToDo item) // arg : item to be created 
-         * 
-         */
+        public Task DeleteTaskItem(int taskItemId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,12 +14,13 @@ namespace Todo_List.Repositories
             _dbContext = dbContext;
         }
 
-        public List<TaskItem> GetAll()
+        public Task<List<TaskItem>> GetAll()
         {
-            var result = _dbContext.Tasks;
+            var result = _dbContext.Tasks.ToListAsync();
 
-            return result.ToList();
+            return result;
         }
+
 
         public Task<TaskItem> GetById()
         {
@@ -31,7 +32,13 @@ namespace Todo_List.Repositories
             throw new NotImplementedException();
         }
 
-        public Task Create(TaskItem item) { throw new NotImplementedException(); }
+        public async Task Create(TaskItem item)
+        {
+            await _dbContext.Tasks.AddAsync(item);
+            await _dbContext.SaveChangesAsync();
+        }
+
+
 
         public Task<TaskItem> Update(TaskItem item) { throw new NotImplementedException(); }
 

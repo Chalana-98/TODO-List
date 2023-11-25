@@ -4,6 +4,12 @@ namespace Todo_List.Services
 {
     public interface IToDoService
     {
-        List<TaskItem> GetAllTaskItems();
+        Task<List<TaskItem>> GetAllTaskItems();
+        Task CreateTaskItem(TaskItem item);
+        Task<TaskItem> UpdateTaskItem(TaskItem item);
+        Task DeleteTaskItem(int taskItemId);
+
+
+
     }
 }
