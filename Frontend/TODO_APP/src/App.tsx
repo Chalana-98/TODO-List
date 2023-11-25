@@ -1,43 +1,37 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Form from "./Form";
+import { createTask, deleteTask, getAllTask } from "./services/toItemService";
 
 interface Task {
   id: number;
   title: string;
   description: string;
   dueDate: string;
-  priority: string;
+  priority: number;
 }
 
 const App: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [editTask, setEditTask] = useState<Task | null>(null);
 
-  const handleTaskSubmit = (
+  const handleTaskSubmit = async (
     title: string,
     description: string,
     dueDate: string,
-    priority: string
+    priority: number
   ) => {
     if (editTask) {
       // Edit existing task
-      const updatedTasks = tasks.map((task) =>
-        task.id === editTask.id
-          ? { ...task, title, description, dueDate, priority }
-          : task
-      );
-      setTasks(updatedTasks);
+      // const updatedTasks = tasks.map((task) =>
+      //   task.id === editTask.id
+      //     ? { ...task, title, description, dueDate, priority }
+      //     : task
+      // );
+      //setTasks(updatedTasks);
       setEditTask(null);
     } else {
-      // Create new task
-      const newTask: Task = {
-        id: Date.now(),
-        title,
-        description,
-        dueDate,
-        priority,
-      };
-      setTasks([...tasks, newTask]);
+      await createTask(title, description, priority);
+      await getTasks();
     }
   };
 
@@ -45,10 +39,23 @@ const App: React.FC = () => {
     setEditTask(task);
   };
 
-  const handleDeleteTask = (taskId: number) => {
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    setTasks(updatedTasks);
+  const handleDeleteTask = async (taskId: number) => {
+    await deleteTask(taskId);
+    await getTasks();
   };
+
+  const getTasks = async () => {
+    const {data, code} = await getAllTask();
+    if (code !== 200) {
+      alert('Error');
+      return;
+    }
+    setTasks(data);
+  }
+
+  useEffect(() => {
+    getTasks();
+  },[]);
 
   return (
     <div className=" mx-auto px-4 py-20 bg-gradient-to-r from-cyan-100 to-blue-200  ">

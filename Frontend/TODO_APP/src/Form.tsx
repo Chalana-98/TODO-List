@@ -5,12 +5,12 @@ interface TaskFormProps {
     title: string,
     description: string,
     dueDate: string,
-    priority: string
+    priority: number
   ) => void;
   initialTitle?: string;
   initialDescription?: string;
   initialDueDate?: string;
-  initialPriority?: string;
+  initialPriority?: number;
 }
 
 const TaskForm: React.FC<TaskFormProps> = ({
@@ -18,7 +18,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
   initialTitle = "",
   initialDescription = "",
   initialDueDate = "",
-  initialPriority = "High",
+  initialPriority = 0,
 }) => {
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
@@ -38,7 +38,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
     setTitle("");
     setDescription("");
     setDueDate("");
-    setPriority("High");
+    setPriority(0);
   };
 
   return (
@@ -91,13 +91,13 @@ const TaskForm: React.FC<TaskFormProps> = ({
         <select
           id="priority"
           value={priority}
-          onChange={(e) => setPriority(e.target.value)}
+          onChange={(e) => setPriority(Number(e.target.value))}
           className="px-3 py-2 border border-gray-300 rounded-xl"
         >
-          <option value="high">High</option>
+          <option value={2}>High</option>
           
-          <option value="medium">Medium</option>
-          <option value="low">Low</option>
+          <option value={1}>Medium</option>
+          <option value={0}>Low</option>
         </select>
       </div>
 
