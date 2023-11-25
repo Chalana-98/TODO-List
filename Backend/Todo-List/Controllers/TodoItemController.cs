@@ -42,14 +42,37 @@ namespace Todo_List.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("update")]
+        public async Task<IActionResult> UpdateTask(TaskItem item)
+        {
+            try
+            {
+                var taskItem = await _ToDoService.UpdateTaskItem(item);
 
+                return Ok(item);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
+        [HttpPost]
+        [Route("delete")]
+        public async Task<IActionResult> DeleteTask(int itemId)
+        {
+            try
+            {
+                await _ToDoService.DeleteTaskItem(itemId);
 
-     
-
-
-
-
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

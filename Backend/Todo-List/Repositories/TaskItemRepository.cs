@@ -40,8 +40,36 @@ namespace Todo_List.Repositories
 
 
 
-        public Task<TaskItem> Update(TaskItem item) { throw new NotImplementedException(); }
+        public async Task<TaskItem> Update(TaskItem item)
+        {
+            var taskItem = await _dbContext.Tasks.FindAsync(item.Id);
 
-        public Task Delete(TaskItem item) { throw new NotImplementedException(); }
+            if (taskItem == null)
+            {
+                throw new Exception("task not found");
+            }
+
+            taskItem.Title = item.Title;
+            taskItem.Description = item.Description;
+            taskItem.IsCompleted = item.IsCompleted;
+            taskItem.Priority = item.Priority;
+
+            _dbContext.SaveChanges();
+
+            return taskItem;
+        }
+
+        public async Task Delete(int taskItemId)
+        {
+            var result = await _dbContext.Tasks.FindAsync(taskItemId);
+
+            if (result == null)
+            {
+                throw new Exception("task not found");
+            }
+            _dbContext.Tasks.Remove(result);
+
+            await _dbContext.SaveChangesAsync();
+        }
     }
 }

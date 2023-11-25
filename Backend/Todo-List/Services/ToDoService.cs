@@ -17,19 +17,19 @@ namespace Todo_List.Services
             return _TaskItemRepository.GetAll();
         }
 
-        public Task<TaskItem> UpdateTaskItem(TaskItem item)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task CreateTaskItem(TaskItem item)
         {
             await _TaskItemRepository.Create(item);
         }
 
-        public Task DeleteTaskItem(int taskItemId)
+        public Task<TaskItem> UpdateTaskItem(TaskItem item)
         {
-            throw new NotImplementedException();
+            return _TaskItemRepository.Update(item);
+        }
+
+        public async Task DeleteTaskItem(int taskItemId)
+        {
+            await _TaskItemRepository.Delete(taskItemId);
         }
     }
 }
