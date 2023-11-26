@@ -59,7 +59,7 @@ namespace Todo_List.Controllers
         }
 
         [HttpPost]
-        [Route("delete")]
+        [Route("delete/{itemId}")]
         public async Task<IActionResult> DeleteTask(int itemId)
         {
             try
