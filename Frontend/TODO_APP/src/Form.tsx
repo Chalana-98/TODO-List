@@ -4,9 +4,10 @@ interface TaskFormProps {
   onSubmit: (
     title: string,
     description: string,
-    dueDate: string,
-    priority: number
+    priority: number,
+    id?: number
   ) => void;
+  initialId?: number;
   initialTitle?: string;
   initialDescription?: string;
   initialDueDate?: string;
@@ -15,6 +16,7 @@ interface TaskFormProps {
 
 const TaskForm: React.FC<TaskFormProps> = ({
   onSubmit,
+  initialId = 0,
   initialTitle = "",
   initialDescription = "",
   initialDueDate = "",
@@ -22,22 +24,20 @@ const TaskForm: React.FC<TaskFormProps> = ({
 }) => {
   const [title, setTitle] = useState(initialTitle);
   const [description, setDescription] = useState(initialDescription);
-  const [dueDate, setDueDate] = useState(initialDueDate);
   const [priority, setPriority] = useState(initialPriority);
 
   useEffect(() => {
     setTitle(initialTitle);
     setDescription(initialDescription);
-    setDueDate(initialDueDate);
     setPriority(initialPriority);
   }, [initialTitle, initialDescription, initialDueDate, initialPriority]);
 
   const handleSubmit = (e: React.FormEvent) => {
+    console.log("initial id in form ==> ", initialId);
     e.preventDefault();
-    onSubmit(title, description, dueDate, priority);
+    onSubmit(title, description, priority, initialId);
     setTitle("");
     setDescription("");
-    setDueDate("");
     setPriority(0);
   };
 
@@ -72,19 +72,6 @@ const TaskForm: React.FC<TaskFormProps> = ({
       </div>
 
       <div className="flex flex-col">
-        <label htmlFor="dueDate" className="mb-1">
-          Due Date:
-        </label>
-        <input
-          type="date"
-          id="dueDate"
-          value={dueDate}
-          onChange={(e) => setDueDate(e.target.value)}
-          className="px-3 py-2 border border-gray-300 rounded-xl"
-        />
-      </div>
-
-      <div className="flex flex-col">
         <label htmlFor="priority" className="mb-1">
           Priority:
         </label>
@@ -95,7 +82,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
           className="px-3 py-2 border border-gray-300 rounded-xl"
         >
           <option value={2}>High</option>
-          
+
           <option value={1}>Medium</option>
           <option value={0}>Low</option>
         </select>
@@ -105,7 +92,7 @@ const TaskForm: React.FC<TaskFormProps> = ({
         type="submit"
         className=" bg-sky-900 hover:bg-emerald-700 text-white font-bold py-2 px-4 rounded-xl"
       >
-        Create Task
+        Submit
       </button>
     </form>
   );
